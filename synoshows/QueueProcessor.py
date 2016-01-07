@@ -1,5 +1,12 @@
 #! /usr/bin/env python
 
+#Scans actual/mock DownloadStation Queue
+#Moves show files to a single, unified destination path
+#Cleans up shows original download path
+#Monitors also non-show completed downloads
+#Clears DownloadStation queue
+#Returns shows destination path and other downloads original path 
+
 import os
 import fnmatch
 import shutil
@@ -10,82 +17,70 @@ from DownloadStationQueue import DownloadStationQueue
 from DownloadStationQueue import ClearDownloadQueue
 
 class QueueProcessor:
-  def __init__(self, isTest):
+  def __init__(self, isTest, config):
       self.isTest = isTest
-      if(self.isTest == False):
-        self.filetypes = ['*.avi', '*.mkv', '*.mp4', '*.wmv']
-        self.dbDlPath = 'Downloads/showRSS_inbox'
-        self.dlPath = '/volume1/Downloads/showRSS_inbox/'
-        self.dstPath = '/volume1/Video/Inbox/'
-      else:
-        self.filetypes = ['*.txt']
-        self.dbDlPath = 'volume1/Video/Testing/showRSS_inbox'
-        self.dlPath = '/volume1/Video/Testing/showRSS_inbox/'
-        self.dstPath = '/volume1/Video/Testing/Inbox/'   
-
+      self.config = config
+   
   def DownloadQueueData(self):
     if (self.isTest==False):
+        #Looks up the actual DownloadStation Queue
         return DownloadStationQueue()
     else:
-        GenerateTestFiles()
-        return MockDownloadQueue()
+        #Testing, Generates mock files and DownloadStation queue
+        GenerateTestFiles(self.config["downloadPath"], self.config["mockDbFile"])
+        return MockDownloadQueue(self.config["mockDbFile"], self.config["pathAsInDb"])
 
   def DirectoryParser(self,srcPath):
     for dirname, subdirs, files in os.walk(srcPath):
         for file in files:
-            for ftype in self.filetypes:
+            for ftype in self.config["filetypes"]:
                 if fnmatch.fnmatch(file, ftype) and not "sample" in file:
-                    return ([os.path.join(dirname,file), os.path.join(self.dstPath, file)])
+                    return ([os.path.join(dirname,os.path.basename(file)), os.path.join(self.config["destinationPath"], file)])
     return
 
+  #Cleans up download path
   def CleanUp(self):
-    os.chdir(self.dlPath)
+    os.chdir(self.config["downloadPath"])
     for root, dirs, files in os.walk('.'):
-      #for f in files:
-        #os.unlink(os.path.join(root,f))
       for d in dirs:
         shutil.rmtree(os.path.join(root, d))
     
+    #Clears completed downloadstation items
     if(self.isTest == False):
       ClearDownloadQueue()
-      
-    
-
-
+  
+  #Processes the DownloadStation Queue    
   def ProcessQueue(self):
+      #Shows will be put in movelist, other completed downloads in otherlist
       moveList = []
       otherList = []
       #Parse Queue
       for line in self.DownloadQueueData():
         #print line
-        if (line[1] == "5" and line[2] == self.dbDlPath):
-            itemPath = os.path.join(self.dlPath, line[0])
+        #Status == 5, Is a Completed Download
+        #Is a ShowRSS item, is in your main show download directory
+        if (line[1] == "5" and line[2] == self.config["pathAsInDb"]):
+            itemPath = os.path.join(self.config["downloadPath"], line[0])
             #It's a File
             if(os.path.isfile(itemPath)):
-              moveList.append([itemPath, os.path.join(self.dstPath, line[0])])
-            #It's a Directory
+              moveList.append([itemPath, os.path.join(self.config["destinationPath"], os.path.basename(line[0]))])
+            #It's a Directory, look into it and search for video files
             elif(os.path.isdir(itemPath)):
               itemInDir = self.DirectoryParser(itemPath)
               moveList.append(itemInDir)
-        #NON SHOWRSS DOWNLOADED ITEMS
-        if (line[1] == "5" and line[2] != self.dbDlPath):
+        #Other Completed Downloaded Items
+        if (line[1] == "5" and line[2] != self.config["pathAsInDb"]):
             itemPath = os.path.join("/volume1", os.path.join(line[2], line[0]))
-            #print(os.path.exists(itemPath))
             if (os.path.exists(itemPath)):
               otherList.append(line[0])
 
-      #Move items, CleanUp, Return relevant items path
+     #Moves show items to destination path, show download path cleanup, returns show destination paths and other items download path
      #print moveList 
       for item in moveList:
-        #print item[0]
-        #print item[1]
+        #print "Source: " + item[0]
+        #print "Destination: " + item[1]
         shutil.move(item[0], item[1])
-        #print item[0]
       self.CleanUp()
 
       
       return [map(lambda x:x[1], moveList), otherList]
-
-#processor = QueueProcessor(True)
-#movedItems = processor.ProcessQueue()
-#print movedItems

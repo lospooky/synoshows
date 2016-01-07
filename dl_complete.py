@@ -1,26 +1,33 @@
 #! /usr/bin/env python
 
 import time
-from QueueProcessor import QueueProcessor
-from Archiver import Archiver
-from PbFormatter import PbFormatter
-from PbNotifier import PbNotifier
+from synoshows import SettingsLoader
+from synoshows import QueueProcessor
+from synoshows import Archiver
+from synoshows import NoteFormatter
+from synoshows import PushBulletNotifier
 
-processor = QueueProcessor(False)
-archiver = Archiver(False)
-formatter = PbFormatter()
-pb = PbNotifier()
+settings = SettingsLoader.LoadSettings()
+
+test = False
+configuration = settings["live"]
+
+processor = QueueProcessor(test, configuration)
+archiver = Archiver(test, configuration["archivePath"], settings["tvnamerconfig_path"])
+formatter = NoteFormatter()
+pb = PushBulletNotifier(settings["pushbulletkey"])
 
 time.sleep(5)
 
-movedItems, otherItems = processor.ProcessQueue()
+tvItems, otherItems = processor.ProcessQueue()
 
-if(len(movedItems) > 0):
-  report = archiver.Archive(movedItems)
+#Tv Shows Notifications
+if(len(tvItems) > 0):
+  report = archiver.Archive(tvItems)
   title, note = formatter.FormatShowsNote(report)
   pb.NotifyNote(title, note)
-  
+
+#Other Downloads Notifications  
 if(len(otherItems) > 0):
   title, note = formatter.FormatDLCompleteNote(otherItems)
-  pb.NotifyNote(title, note)
-    
+  pb.NotifyNote(title, note)    

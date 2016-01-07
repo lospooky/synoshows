@@ -1,14 +1,22 @@
 #! /usr/bin/env python
 
-from QueueProcessor import QueueProcessor
-from Archiver import Archiver
-from PbFormatter import PbFormatter
-from PbNotifier import PbNotifier
+#Generates mock files + downloadstation queue and runs the scripts on them
 
-processor = QueueProcessor(True)
-archiver = Archiver(True)
-formatter = PbFormatter()
-pb = PbNotifier()
+from synoshows import SettingsLoader
+from synoshows import QueueProcessor
+from synoshows import Archiver
+from synoshows import NoteFormatter
+from synoshows import PushBulletNotifier
+
+settings = SettingsLoader.LoadSettings()
+
+test = True
+configuration = settings["test"]
+
+processor = QueueProcessor(test, configuration)
+archiver = Archiver(test, configuration["archivePath"], settings["tvnamerconfig_path"])
+formatter = NoteFormatter()
+pb = PushBulletNotifier(settings["pushbulletkey"])
 
 movedItems, otherItems = processor.ProcessQueue()
 report = archiver.Archive(movedItems)

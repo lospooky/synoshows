@@ -1,0 +1,20 @@
+{
+  "pushbulletkey": "v1fn5dViDswvPrtvE31ZLkPBQubMVNt7kyujxIRFdS4om",
+  "tvnamerconfig_path": "/volume1/Software/Synology/deploy/tvnamerconfig.json",
+
+  "live":{
+          "filetypes": ["*.avi", "*.mkv", "*.mp4", "*.wmv"],
+          "pathAsInDb": "Downloads/showRSS_inbox",
+          "downloadPath": "/volume1/Downloads/showRSS_inbox/",
+          "destinationPath": "/volume1/Video/Inbox/",
+          "archivePath": "/volume1/Video/Shows/"
+          },
+          
+  "test":{"filetypes": ["*.txt"],
+          "pathAsInDb": "volume1/Video/Testing/showRSS_inbox",
+          "downloadPath": "/volume1/Video/Testing/showRSS_inbox/",
+          "destinationPath": "/volume1/Video/Testing/Inbox/",
+          "archivePath": "/volume1/Video/Testing/Shows/",
+          "mockDbFile": "/volume1/Video/Testing/mockdb.txt"
+          }
+}
