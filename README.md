@@ -4,7 +4,7 @@ SynoShows is a series of scripts for managing the TV Show library on your [Synol
 The main functionality is that of automating the renaming of TV Show files downloaded via the Synology's own DownloadStation and sorting it into your existing collection. Additionally, it will send you a [PushBullet](http://www.pushbullet.com) notification when DownloadStation finishes downloading something, TV Show or not. Pretty Neat!
 
 ##### Disclaimer
-The SynoShows scripts interfere with some of the Synology Disk Station Manager internal components, such as DownloadStation and the PostgreSQL database. Use at your own risk and with the full awareness that they void your warranty. I decline all responsibility for any malfunction or damage these scripts may cause to your Synology NAS.<br>
+The SynoShows scripts interfere with some of the Synology Disk Station Manager internal components, such as DownloadStation and the PostgreSQL system database. Use at your own risk and with the full awareness that they void your warranty. I decline all responsibility for any malfunction or damage these scripts may cause to your Synology NAS.<br>
 Having disclaimed what needed to be disclaimed, I have been using them for more than a year on my DS212+ with no issues.
 
 ## Installation
