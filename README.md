@@ -13,8 +13,8 @@ Having disclaimed what needed to be disclaimed, I have been using them for more 
 * DownloadStation on your Synology NAS
 * Python 2.7 on your Synology NAS
 * Install pip. Quickest way seems to [Download this file](https://raw.githubusercontent.com/pypa/pip/master/contrib/get-pip.py) somewhere on your Syno, and run it with python `python get-pip.py`
-* [Tvnamer](https://github.com/dbr/tvnamer) `pip install tvnamer`, an awesome utility to rename tv show files
-* [Pushbullet.py](https://github.com/randomchars/pushbullet.py) `pip install pushbullet.py`, excellent Python library for the [PushBullet](http://www.pushbullet.com) services
+* [tvnamer](https://github.com/dbr/tvnamer) `pip install tvnamer`, an awesome utility to rename tv show files
+* [pushbullet.py](https://github.com/randomchars/pushbullet.py) `pip install pushbullet.py`, excellent Python library for the [PushBullet](http://www.pushbullet.com) services
 
 ### Setup
 * Clone the repo somewhere on your Synology `git clone https://github.com/lospooky/synoshows.git`
@@ -80,5 +80,5 @@ SynoShows is distributed under the [MIT License](https://opensource.org/licenses
 
 Synology, DownloadStation, Disk Station Manager, DS212+, VideoStation are trademarks and products of property of [Synology Inc.](http://www.synology.com)<br>
 Pushbullet is a trademark and product of property of [PushBullet](http://www.pushbullet.com).<br>
-tvnamer is a creation of [Ben Dickson](http://github.com/dbr), available under the Unlicense License.<br>
-pushbullet.py is a creation of [Richard Borcsik](http://richardb.me), available under the MIT License.<br>
+[tvnamer](https://github.com/dbr/tvnamer) is a creation of [Ben Dickson](http://github.com/dbr), available under the Unlicense License.<br>
+[pushbullet.py](https://github.com/randomchars/pushbullet.py) is a creation of [Richard Borcsik](http://richardb.me), available under the MIT License.<br>
