@@ -17,9 +17,10 @@ The main functionality is that of automating the renaming of TV Show files downl
 * Edit `/var/packages/DownloadStation/scripts/start-stop-status` and put a # sign in front of the following line<br>
 `rm ${PACKAGE_DIR}/etc/download/settings.json` it should be line 86.<br> This will comment it out, disabling the deletion of DownloadStation's setting file every time it starts.
 * Stop, Start, and Stop once again DownloadStation via the Synology Package Manager or by running via shell the `start-stop-status` script we just edited. There now should be a `settings.json` file in `/usr/syno/etc/packages/DownloadStation/download`
-* Edit `settings.json` to set it to run our script every time DownloadStation completes a download task.<br> Typically the script will be SynoShows' `dl_complete.py` 
-  *`"script-torrent-done-enabled": true`, line 57
-  *`"script-torrent-done-filename": "/complete/path/to/script.py"`, line 58
+* Edit `settings.json` to set it to run our script every time DownloadStation completes a download task:
+ * `"script-torrent-done-enabled": true`, line 57
+ * `"script-torrent-done-filename": "/complete/path/to/script.py"`, line 58<br>
+* In normal operation the script to run is SynoShows' `dl_complete.py`. 
 * Set the correct permissions for the SynoShows script files, user access, being able to be executed, etc..
 * Restart DownloadStation
 * To check everything is working smoothly, set DownloadStation's `settings.json` to run `dl_complete_triggercheck.py`. Each time this script runs, it will write a line to the text file specified inside.
@@ -27,7 +28,7 @@ The main functionality is that of automating the renaming of TV Show files downl
 ## Configuration
 To configure SynoShows, edit the settings.json in its own main folder. 
 * `pushbulletkey` has to be set to your own PushBullet API Key (Access Token). Get one from your Pushbullet [Account Settings](https://www.pushbullet.com/#settings/account). It's required to correctly send the PushBullet notifications.
-* `tvnamerconfig_path` specifies the configuration file tvnamer will use when invoked by the SynoShows scripts. I have included the one I personally use, you are welcome to use any of your liking.
+* `tvnamerconfig_path` specifies the configuration file tvnamer will use when invoked by the SynoShows scripts. I have included the one I personally use, but you can use any of your liking.
 * `live` provides the configuration for use on live usage, when downloading real shows.
 * `test` provides convenience, separate configuration parameters to use when testing out functionality, [more below](#testing).
 
@@ -56,7 +57,21 @@ Also, their aim is to help you find a configuration setup of your liking and mor
 
 * `test_pushbullet.py` is a very simple script to verify everything is in order with PushBullet functionality. API key, note content, etc...
 * `test_dl_complete_mockdata.py` instead allows you to test the whole processing stack without requiring any actual download to complete on your Synology NAS.<br>
-It takes the list of filenames specified in `mockDbFile` and it will generate matching `.txt` files in its own (test configuration) `downloadPath` as well as a fake DownloadStation queue referring to these files. From there everything will proceed as with live processing except that the scripts are set to process `.txt` files. These files will of course not be added to the Synology Media Index. Be sure to specify test configuration paths somewhere else than your actual path to avoid confusion and/or interference!
+It takes the list of filenames specified in `mockDbFile` and it will generate matching `.txt` files in its own (test configuration) `downloadPath` together with a fake DownloadStation queue referring to these files. From there everything will proceed as with live processing except that the scripts are set to process `.txt` files. These files will of course not be added to the Synology Media Index. Be sure to specify test configuration paths somewhere else than your actual path to avoid confusion and/or interference!
 
 ### Other Functions
 Sometimes, the Synology Media Index ends up having orphan entries: database entries whose referred file is not there anymore. Run `util_remove_orphans.sh` or `util_sanitize_mediadb.py` to get rid of those orphans.
+
+## Credits & License
+[blog.spook.ee/synoshows](blog.spook.ee/synoshows)<br>
+© Simone Cirillo. 2016.<br>
+SynoShows is distributed under the [MIT License](https://opensource.org/licenses/MIT).<br>
+
+
+Synology, DownloadStation, VideoStation are trademarks and products of property of [Synology Inc.](http://www.synology.com)<br>
+Pushbullet is a trademark and product of property of [PushBullet](http://www.pushbullet.com).<br>
+tvnamer is a creation of [Ben Dickson](http://github.com/dbr), available under the Unlicense License.<br>
+pushbullet.py is a creation of [Richard Borcsik](http://richardb.me), available under the MIT License.<br>
+
+
+
