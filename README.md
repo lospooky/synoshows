@@ -36,7 +36,8 @@ You can be pretty sure you'll have to redo the DownloadStation `start-stop-statu
 
 
 ## Configuration
-To configure SynoShows, edit the `settings.json` in the main folder. **Watch out:** This is not at all the same `settings.json` we edited to fix DownloadStation.
+To configure SynoShows, edit the `settings.json` in the main folder.<br>
+**Watch out:** This is not at all the same `settings.json` we edited to fix DownloadStation.
 * `pushbulletkey` has to be set to your own PushBullet API Key (Access Token). Get one from your Pushbullet [Account Settings](https://www.pushbullet.com/#settings/account). It's required to correctly send the PushBullet notifications.
 * `tvnamerconfig_path` specifies the configuration file tvnamer will use when invoked by the SynoShows scripts. I have included the one I personally use, but you can use any of your liking.
 * `live` provides the configuration for use on live usage, when downloading real shows.
