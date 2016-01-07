@@ -4,7 +4,8 @@ SynoShows is a series of scripts for managing the TV Show library on your [Synol
 The main functionality is that of automating the renaming of TV Show files downloaded via the Synology's own DownloadStation and sorting it into your existing collection. Additionally, it will send you a [PushBullet](http://www.pushbullet.com) notification when DownloadStation finishes downloading something, TV Show or not. Pretty Neat!
 
 ##### Disclaimer
-The SynoShows scripts interfere with some of the Synology Disk Station Manager internal components, such as DownloadStation and the PostgreSQL database. I have been using them for more than a year, still use at your own risk and with the full awareness that they may void your warranty.
+The SynoShows scripts interfere with some of the Synology Disk Station Manager internal components, such as DownloadStation and the PostgreSQL database. Use at your own risk and with the full awareness that they void your warranty. I decline all responsibility for any malfunction or damage these scripts may cause to your Synology NAS.<br>
+Having disclaimed what needed to be disclaimed, I have been using them for more than a year on my DS212+ with no issues.
 
 ## Installation
 
@@ -13,7 +14,7 @@ The SynoShows scripts interfere with some of the Synology Disk Station Manager i
 * Python 2.7 on your Synology NAS
 * Install pip. Quickest way seems to [Download this file](https://raw.githubusercontent.com/pypa/pip/master/contrib/get-pip.py) somewhere on your Syno, and run it with python `python get-pip.py`
 * [Tvnamer](https://github.com/dbr/tvnamer) `pip install tvnamer`, an awesome utility to rename tv show files
-* [Pushbullet.py](https://github.com/randomchars/pushbullet.py) `pip install pushbullet.py`, excellent Python library for the [PushBullet](http://www.pushbullet.com) services 
+* [Pushbullet.py](https://github.com/randomchars/pushbullet.py) `pip install pushbullet.py`, excellent Python library for the [PushBullet](http://www.pushbullet.com) services
 
 ### Setup
 * Clone the repo somewhere on your Synology `git clone https://github.com/lospooky/synoshows.git`
@@ -27,6 +28,12 @@ The SynoShows scripts interfere with some of the Synology Disk Station Manager i
 * Set the correct permissions for the SynoShows script files, user access, being able to be executed, etc..
 * Restart DownloadStation
 * To check everything is working smoothly, set DownloadStation's `settings.json` to run `dl_complete_triggercheck.py`. Each time this script runs, it will write a line to the text file specified inside.
+
+#### In case of DSM or DownloadStation update
+The Synology's own system scripts are reverted to their original state.<br>
+You may have to reinstall `pip` and/or the other packages installed via `pip`. YMMV. <br>
+You can be pretty sure you'll have to redo the DownloadStation `start-stop-status` and `settings.json` tweaking described above.
+
 
 ## Configuration
 To configure SynoShows, edit the settings.json in its own main folder. 
