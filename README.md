@@ -25,23 +25,20 @@ The main functionality is that of automating the renaming of TV Show files downl
 * To check everything is working smoothly, set DownloadStation's `settings.json` to run `dl_complete_triggercheck.py`. Each time this script runs, it will write a line to the text file specified inside.
 
 ## Configuration
-<p>
 To configure SynoShows, edit the settings.json in its own main folder. 
-* `pushbulletkey` has to be set to your own PushBullet API Key (Access Token). Get one from your Pushbullet Account Settings. It's required to correctly send the PushBullet notifications.
+* `pushbulletkey` has to be set to your own PushBullet API Key (Access Token). Get one from your Pushbullet [Account Settings](https://www.pushbullet.com/#settings/account). It's required to correctly send the PushBullet notifications.
 * `tvnamerconfig_path` specifies the configuration file tvnamer will use when invoked by the SynoShows scripts. I have included the one I personally use, you are welcome to use any of your liking.
 * `live` provides the configuration for use on live usage, when downloading real shows.
 * `test` provides convenience, separate configuration parameters to use when testing out functionality, [more below](#testing).
-</p>
 
-<p>
+
 The parameters for the two operating configurations are:
 * `filetypes` is the list of filetypes (extensions) that will be treated as Tv Show files.
 * `downloadPath` is the directory where DownloadStation is set to download your Show files.
 * `pathAsInDb` should be the same as `downloadPath` but without starting or trailing slashes, e.g. `path/to/my/directory`. It's how the path appears in the internal Synology PostgreSQL database.
 * `destinationPath` is an intermediate directory the SynoShows scripts will move the show files to, useful to have in case something goes wrong with the renaming process, i.e. thetvdb goes down...
 * `archivePath` is the final root path the show files will be moved to, it should be the main, indexed, directory for your shows.
-* `mockDbFile` is a txt file that will be used to generate mock files during testing, a sample one is provided. **Test configuration only** 
-</p>
+* `mockDbFile` is a txt file that will be used to generate mock files during testing, a sample one is provided. **Test configuration only**.
 
 ## Operations
 The workflow of the Synoshows scripts can be summarized as follows:
