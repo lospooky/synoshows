@@ -3,6 +3,9 @@ SynoShows is a series of scripts for managing the TV Show library on your [Synol
 
 The main functionality is that of automating the renaming of TV Show files downloaded via the Synology's own DownloadStation and sorting it into your existing collection. Additionally, it will send you a [PushBullet](http://www.pushbullet.com) notification when DownloadStation finishes downloading something, TV Show or not. Pretty Neat!
 
+#### Disclaimer
+The SynoShows scripts interfere with some of the Synology Disk Station Manager internals. I have been safely using them for more than a year, but use at your own risk and with the full awareness that they may void your warranty.
+
 ## Installation
 
 ### Prerequisites
@@ -72,6 +75,3 @@ Synology, DownloadStation, VideoStation are trademarks and products of property 
 Pushbullet is a trademark and product of property of [PushBullet](http://www.pushbullet.com).<br>
 tvnamer is a creation of [Ben Dickson](http://github.com/dbr), available under the Unlicense License.<br>
 pushbullet.py is a creation of [Richard Borcsik](http://richardb.me), available under the MIT License.<br>
-
-
-
