@@ -63,7 +63,7 @@ The workflow of the Synoshows scripts can be summarized as follows:
 
 ### Testing
 I have provided a couple relatively hassle-free test scripts. They are useful for troubleshooting potential issues.
-Also, their aim is to help you find a configuration setup of your liking and more generally to assist you with tweaking my scripts to your liking. Have fun!
+Also, their aim is to help you find a configuration setup of your liking and more generally to assist you with tweaking my scripts. Have fun!
 
 * `test_pushbullet.py` is a very simple script to verify everything is in order with PushBullet functionality. API key, note content, etc...
 * `test_dl_complete_mockdata.py` instead allows you to test the whole processing stack without requiring any actual download to complete on your Synology NAS.<br>
