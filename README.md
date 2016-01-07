@@ -78,7 +78,7 @@ Sometimes, the Synology Media Index ends up having orphan entries: database entr
 SynoShows is distributed under the [MIT License](https://opensource.org/licenses/MIT).<br>
 
 
-Synology, DownloadStation, Disk Station Manager, VideoStation are trademarks and products of property of [Synology Inc.](http://www.synology.com)<br>
+Synology, DownloadStation, Disk Station Manager, DS212+, VideoStation are trademarks and products of property of [Synology Inc.](http://www.synology.com)<br>
 Pushbullet is a trademark and product of property of [PushBullet](http://www.pushbullet.com).<br>
 tvnamer is a creation of [Ben Dickson](http://github.com/dbr), available under the Unlicense License.<br>
 pushbullet.py is a creation of [Richard Borcsik](http://richardb.me), available under the MIT License.<br>
