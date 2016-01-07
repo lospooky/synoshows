@@ -27,7 +27,7 @@ The main functionality is that of automating the renaming of TV Show files downl
 ## Configuration
 <p>
 To configure SynoShows, edit the settings.json in its own main folder. 
-* `pushbulletkey` has to be set to your own PushBullet API Key (Access Token). Get one from your Pushbullet [Account Settings](https://www.pushbullet.com/#settings/account). It's required to correctly send the PushBullet notifications.
+* `pushbulletkey` has to be set to your own PushBullet API Key (Access Token). Get one from your Pushbullet Account Settings. It's required to correctly send the PushBullet notifications.
 * `tvnamerconfig_path` specifies the configuration file tvnamer will use when invoked by the SynoShows scripts. I have included the one I personally use, you are welcome to use any of your liking.
 * `live` provides the configuration for use on live usage, when downloading real shows.
 * `test` provides convenience, separate configuration parameters to use when testing out functionality, [more below](#testing).
