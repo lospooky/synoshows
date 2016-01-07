@@ -1,7 +1,7 @@
 #!/bin/sh
 # Usage: ./remove_orphans.sh [-f], -f option deletes db entries 
 # Detects and remove orphaned files from the index db on Synology NAS
-#Originally f
+# Originally from wacha.ch/wiki/synology
 [ "$1" = "-f" ] && REMOVE=1
 IFS='
 '
